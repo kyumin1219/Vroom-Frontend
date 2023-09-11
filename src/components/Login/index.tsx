@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components/native";
 import Logo from "../../../assets/Logo.svg";
 import { WithLocalSvg } from "react-native-svg";
-import { View, Text, TextInput, Button, Alert } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 
 const Container = styled.View`
   flex: 1;
@@ -19,6 +19,14 @@ const ImageContainer = styled.View`
 `;
 
 const InputContainer = styled.View`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 40%;
+`;
+
+const EmailContainer = styled.View`
   width: 100%;
   align-items: center;
 `;
@@ -41,24 +49,23 @@ const Input = styled.TextInput`
 const Label = styled.Text`
   font-size: 16px;
   font-family: "Noto Sans KR";
+  margin-right: 70%;
 `;
 
 const ButtonContainer = styled.View`
-  width: 290px;
-  height: 50px;
-  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 35%;
 `;
 
-const LoginButton = styled.Button`
+const CustomButton = styled.TouchableOpacity`
   background-color: #82c96d;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
+  width: 290px;
+  height: 50px;
   border-radius: 30px;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
 `;
 
 const ButtonText = styled.Text`
@@ -88,29 +95,31 @@ const LoginScreen: React.FC = () => {
         <WithLocalSvg width={200} height={40} asset={Logo} />
       </ImageContainer>
       <InputContainer>
-        <Label>이메일</Label>
-        <Input
-          placeholder="이메일을 입력하세요"
-          onSubmitEditing={login}
-          onChangeText={onChangeId}
-          value={id}
-          autoCapitalize="none"
-        />
+        <EmailContainer>
+          <Label>이메일</Label>
+          <Input
+            placeholder="이메일을 입력하세요"
+            onSubmitEditing={login}
+            onChangeText={onChangeId}
+            value={id}
+            autoCapitalize="none"
+          />
+        </EmailContainer>
+        <PasswordContainer>
+          <Label>비밀번호</Label>
+          <Input
+            placeholder="비밀번호를 입력하세요"
+            onChangeText={onChangePw}
+            value={pw}
+            secureTextEntry
+            autoCapitalize="none"
+          />
+        </PasswordContainer>
       </InputContainer>
-      <PasswordContainer>
-        <Label>비밀번호</Label>
-        <Input
-          placeholder="비밀번호를 입력하세요"
-          onChangeText={onChangePw}
-          value={pw}
-          secureTextEntry
-          autoCapitalize="none"
-        />
-      </PasswordContainer>
       <ButtonContainer>
-        <LoginButton title="로그인" onPress={login}>
+        <CustomButton onPress={login}>
           <ButtonText>로그인</ButtonText>
-        </LoginButton>
+        </CustomButton>
       </ButtonContainer>
     </Container>
   );
