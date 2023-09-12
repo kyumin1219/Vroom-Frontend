@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
-import Logo from "../../../assets/Logo.svg";
+import logo from "../../assets/Logo.svg";
+import insta from "../../assets/insta.svg";
+import facebook from "../../assets/facebook.svg";
+import google from "../../assets/google.svg";
 import { WithLocalSvg } from "react-native-svg";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 
 const Container = styled.View`
@@ -74,6 +79,25 @@ const ButtonText = styled.Text`
   font-weight: bold;
 `;
 
+const LoginContainer = styled.View`
+  display: flex;
+  flex-direction: row;
+`;
+
+const LoginFooter = styled.View`
+  display: flex;
+  padding: 0;
+  margin-left: 30%;
+`;
+
+const FooterText = styled.Text`
+  color: #5f5f5f;
+  font-family: Pretendard Variable;
+  font-size: 11px;
+  font-weight: 300;
+  margin-top: 5px;
+`;
+
 const LoginScreen: React.FC = () => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
@@ -92,7 +116,7 @@ const LoginScreen: React.FC = () => {
   return (
     <Container>
       <ImageContainer>
-        <WithLocalSvg width={200} height={40} asset={Logo} />
+        <WithLocalSvg width={200} height={40} asset={logo} />
       </ImageContainer>
       <InputContainer>
         <EmailContainer>
@@ -117,10 +141,20 @@ const LoginScreen: React.FC = () => {
         </PasswordContainer>
       </InputContainer>
       <ButtonContainer>
+        <LoginContainer>
+          <WithLocalSvg width={27} height={27} asset={insta} />
+          <WithLocalSvg width={27} height={27} asset={facebook} />
+          <WithLocalSvg width={27} height={27} asset={google} />
+        </LoginContainer>
         <CustomButton onPress={login}>
           <ButtonText>로그인</ButtonText>
         </CustomButton>
       </ButtonContainer>
+      <LoginFooter>
+        <FooterText>
+          자주 묻는 질문 | <FooterText>회원가입</FooterText>
+        </FooterText>
+      </LoginFooter>
     </Container>
   );
 };
