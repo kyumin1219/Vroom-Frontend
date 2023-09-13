@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
-import logo from "../../assets/Logo.svg";
-import insta from "../../assets/insta.svg";
-import facebook from "../../assets/facebook.svg";
-import google from "../../assets/google.svg";
-import { WithLocalSvg } from "react-native-svg";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import Logo from "../../assets/logo.svg";
+import Insta from "../../assets/insta.svg";
+import Facebook from "../../assets/facebook.svg";
+import Google from "../../assets/google.svg";
+import { useNavigation } from "@react-navigation/native";
 import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 
 const Container = styled.View`
@@ -101,6 +99,7 @@ const FooterText = styled.Text`
 const LoginScreen: React.FC = () => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
+  const navigation = useNavigation();
 
   const onChangeId = (text: string) => setId(text);
   const onChangePw = (text: string) => setPw(text);
@@ -110,13 +109,14 @@ const LoginScreen: React.FC = () => {
       Alert.alert("아이디와 비밀번호를 입력해 주세요.");
     } else {
       Alert.alert("로그인 성공!");
+      navigation.navigate("main" as never);
     }
   };
 
   return (
     <Container>
       <ImageContainer>
-        <WithLocalSvg width={200} height={40} asset={logo} />
+        <Logo width={200} height={40} />
       </ImageContainer>
       <InputContainer>
         <EmailContainer>
@@ -142,9 +142,9 @@ const LoginScreen: React.FC = () => {
       </InputContainer>
       <ButtonContainer>
         <LoginContainer>
-          <WithLocalSvg width={27} height={27} asset={insta} />
-          <WithLocalSvg width={27} height={27} asset={facebook} />
-          <WithLocalSvg width={27} height={27} asset={google} />
+          <Insta width={27} height={27} />
+          <Facebook width={27} height={27} />
+          <Google width={27} height={27} />
         </LoginContainer>
         <CustomButton onPress={login}>
           <ButtonText>로그인</ButtonText>
