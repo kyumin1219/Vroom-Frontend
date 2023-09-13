@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
-import Logo from "../../assets/logo.svg";
-import Insta from "../../assets/insta.svg";
-import Facebook from "../../assets/facebook.svg";
-import Google from "../../assets/google.svg";
+import Logo from "../../assets/logo.svg"; 
 import { useNavigation } from "@react-navigation/native";
 import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 
@@ -15,9 +12,8 @@ const Container = styled.View`
 `;
 
 const ImageContainer = styled.View`
+  margin-top: 10%;
   font-size: 26px;
-  margin-left: 50px;
-  margin-top: 20px;
   font-weight: 600;
 `;
 
@@ -141,18 +137,16 @@ const LoginScreen: React.FC = () => {
         </PasswordContainer>
       </InputContainer>
       <ButtonContainer>
-        <LoginContainer>
-          <Insta width={27} height={27} />
-          <Facebook width={27} height={27} />
-          <Google width={27} height={27} />
-        </LoginContainer>
         <CustomButton onPress={login}>
           <ButtonText>로그인</ButtonText>
         </CustomButton>
       </ButtonContainer>
       <LoginFooter>
-        <FooterText>
-          자주 묻는 질문 | <FooterText>회원가입</FooterText>
+        <FooterText onPress={() => navigation.navigate("faq" as never)}>
+          자주 묻는 질문 |{" "}
+          <FooterText onPress={() => navigation.navigate("signup" as never)}>
+            회원가입
+          </FooterText>
         </FooterText>
       </LoginFooter>
     </Container>
