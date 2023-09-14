@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import AppHeader from "../layout/AppHeader";
 import { View, Text } from "react-native";
+import { DefaultBox } from "../../../style/GlobalStyle";
 
 const MainContainer = styled.View`
   width: 100%;
